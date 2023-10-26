@@ -1,0 +1,27 @@
+version: "4.20.1"
+services:
+
+  laravel:
+    container_name: laravel
+    build: .
+    volumes:
+      - ./xpress:/var/www/html
+    ports:
+      - 8000:80
+  
+  mysql_db:
+    container_name: mysql_db
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: xpress
+    ports:
+    - 3306:3306
+  
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: phpmyadmin:latest
+    ports:
+      - 8001:80
+    environment:
+      - PMA_ARBITRARY=1
